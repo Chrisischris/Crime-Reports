@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A0E7AC3F2050692E00E3410D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC3E2050692E00E3410D /* AppDelegate.swift */; };
+		A0E7AC412050692E00E3410D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC402050692E00E3410D /* FirstViewController.swift */; };
+		A0E7AC432050692E00E3410D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC422050692E00E3410D /* SecondViewController.swift */; };
+		A0E7AC462050692E00E3410D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E7AC442050692E00E3410D /* Main.storyboard */; };
+		A0E7AC482050692E00E3410D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0E7AC472050692E00E3410D /* Assets.xcassets */; };
+		A0E7AC4B2050692E00E3410D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E7AC492050692E00E3410D /* LaunchScreen.storyboard */; };
+		A0E7AC562050692E00E3410D /* Crime_ReportsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC552050692E00E3410D /* Crime_ReportsTests.swift */; };
+		A0E7AC612050692E00E3410D /* Crime_ReportsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC602050692E00E3410D /* Crime_ReportsUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A0E7AC522050692E00E3410D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0E7AC332050692E00E3410D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0E7AC3A2050692E00E3410D;
+			remoteInfo = "Crime Reports";
+		};
+		A0E7AC5D2050692E00E3410D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0E7AC332050692E00E3410D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0E7AC3A2050692E00E3410D;
+			remoteInfo = "Crime Reports";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A0E7AC3B2050692E00E3410D /* Crime Reports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crime Reports.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0E7AC3E2050692E00E3410D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A0E7AC402050692E00E3410D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		A0E7AC422050692E00E3410D /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A0E7AC452050692E00E3410D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A0E7AC472050692E00E3410D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0E7AC4A2050692E00E3410D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A0E7AC4C2050692E00E3410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0E7AC512050692E00E3410D /* Crime ReportsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Crime ReportsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0E7AC552050692E00E3410D /* Crime_ReportsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crime_ReportsTests.swift; sourceTree = "<group>"; };
+		A0E7AC572050692E00E3410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0E7AC5C2050692E00E3410D /* Crime ReportsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Crime ReportsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0E7AC602050692E00E3410D /* Crime_ReportsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crime_ReportsUITests.swift; sourceTree = "<group>"; };
+		A0E7AC622050692E00E3410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A0E7AC382050692E00E3410D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0E7AC4E2050692E00E3410D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0E7AC592050692E00E3410D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A0E7AC322050692E00E3410D = {
+			isa = PBXGroup;
+			children = (
+				A0E7AC3D2050692E00E3410D /* Crime Reports */,
+				A0E7AC542050692E00E3410D /* Crime ReportsTests */,
+				A0E7AC5F2050692E00E3410D /* Crime ReportsUITests */,
+				A0E7AC3C2050692E00E3410D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A0E7AC3C2050692E00E3410D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A0E7AC3B2050692E00E3410D /* Crime Reports.app */,
+				A0E7AC512050692E00E3410D /* Crime ReportsTests.xctest */,
+				A0E7AC5C2050692E00E3410D /* Crime ReportsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A0E7AC3D2050692E00E3410D /* Crime Reports */ = {
+			isa = PBXGroup;
+			children = (
+				A0E7AC3E2050692E00E3410D /* AppDelegate.swift */,
+				A0E7AC402050692E00E3410D /* FirstViewController.swift */,
+				A0E7AC422050692E00E3410D /* SecondViewController.swift */,
+				A0E7AC442050692E00E3410D /* Main.storyboard */,
+				A0E7AC472050692E00E3410D /* Assets.xcassets */,
+				A0E7AC492050692E00E3410D /* LaunchScreen.storyboard */,
+				A0E7AC4C2050692E00E3410D /* Info.plist */,
+			);
+			path = "Crime Reports";
+			sourceTree = "<group>";
+		};
+		A0E7AC542050692E00E3410D /* Crime ReportsTests */ = {
+			isa = PBXGroup;
+			children = (
+				A0E7AC552050692E00E3410D /* Crime_ReportsTests.swift */,
+				A0E7AC572050692E00E3410D /* Info.plist */,
+			);
+			path = "Crime ReportsTests";
+			sourceTree = "<group>";
+		};
+		A0E7AC5F2050692E00E3410D /* Crime ReportsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A0E7AC602050692E00E3410D /* Crime_ReportsUITests.swift */,
+				A0E7AC622050692E00E3410D /* Info.plist */,
+			);
+			path = "Crime ReportsUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A0E7AC3A2050692E00E3410D /* Crime Reports */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0E7AC652050692E00E3410D /* Build configuration list for PBXNativeTarget "Crime Reports" */;
+			buildPhases = (
+				A0E7AC372050692E00E3410D /* Sources */,
+				A0E7AC382050692E00E3410D /* Frameworks */,
+				A0E7AC392050692E00E3410D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Crime Reports";
+			productName = "Crime Reports";
+			productReference = A0E7AC3B2050692E00E3410D /* Crime Reports.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A0E7AC502050692E00E3410D /* Crime ReportsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0E7AC682050692E00E3410D /* Build configuration list for PBXNativeTarget "Crime ReportsTests" */;
+			buildPhases = (
+				A0E7AC4D2050692E00E3410D /* Sources */,
+				A0E7AC4E2050692E00E3410D /* Frameworks */,
+				A0E7AC4F2050692E00E3410D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0E7AC532050692E00E3410D /* PBXTargetDependency */,
+			);
+			name = "Crime ReportsTests";
+			productName = "Crime ReportsTests";
+			productReference = A0E7AC512050692E00E3410D /* Crime ReportsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A0E7AC5B2050692E00E3410D /* Crime ReportsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0E7AC6B2050692E00E3410D /* Build configuration list for PBXNativeTarget "Crime ReportsUITests" */;
+			buildPhases = (
+				A0E7AC582050692E00E3410D /* Sources */,
+				A0E7AC592050692E00E3410D /* Frameworks */,
+				A0E7AC5A2050692E00E3410D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0E7AC5E2050692E00E3410D /* PBXTargetDependency */,
+			);
+			name = "Crime ReportsUITests";
+			productName = "Crime ReportsUITests";
+			productReference = A0E7AC5C2050692E00E3410D /* Crime ReportsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0E7AC332050692E00E3410D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Christopher Haen";
+				TargetAttributes = {
+					A0E7AC3A2050692E00E3410D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					A0E7AC502050692E00E3410D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A0E7AC3A2050692E00E3410D;
+					};
+					A0E7AC5B2050692E00E3410D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A0E7AC3A2050692E00E3410D;
+					};
+				};
+			};
+			buildConfigurationList = A0E7AC362050692E00E3410D /* Build configuration list for PBXProject "Crime Reports" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A0E7AC322050692E00E3410D;
+			productRefGroup = A0E7AC3C2050692E00E3410D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A0E7AC3A2050692E00E3410D /* Crime Reports */,
+				A0E7AC502050692E00E3410D /* Crime ReportsTests */,
+				A0E7AC5B2050692E00E3410D /* Crime ReportsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A0E7AC392050692E00E3410D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0E7AC4B2050692E00E3410D /* LaunchScreen.storyboard in Resources */,
+				A0E7AC482050692E00E3410D /* Assets.xcassets in Resources */,
+				A0E7AC462050692E00E3410D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0E7AC4F2050692E00E3410D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0E7AC5A2050692E00E3410D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A0E7AC372050692E00E3410D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0E7AC432050692E00E3410D /* SecondViewController.swift in Sources */,
+				A0E7AC3F2050692E00E3410D /* AppDelegate.swift in Sources */,
+				A0E7AC412050692E00E3410D /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0E7AC4D2050692E00E3410D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0E7AC562050692E00E3410D /* Crime_ReportsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0E7AC582050692E00E3410D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0E7AC612050692E00E3410D /* Crime_ReportsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0E7AC532050692E00E3410D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0E7AC3A2050692E00E3410D /* Crime Reports */;
+			targetProxy = A0E7AC522050692E00E3410D /* PBXContainerItemProxy */;
+		};
+		A0E7AC5E2050692E00E3410D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0E7AC3A2050692E00E3410D /* Crime Reports */;
+			targetProxy = A0E7AC5D2050692E00E3410D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A0E7AC442050692E00E3410D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0E7AC452050692E00E3410D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A0E7AC492050692E00E3410D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0E7AC4A2050692E00E3410D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A0E7AC632050692E00E3410D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A0E7AC642050692E00E3410D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A0E7AC662050692E00E3410D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS4WD246Q6;
+				INFOPLIST_FILE = "Crime Reports/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishaen.Crime-Reports";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A0E7AC672050692E00E3410D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS4WD246Q6;
+				INFOPLIST_FILE = "Crime Reports/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishaen.Crime-Reports";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A0E7AC692050692E00E3410D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS4WD246Q6;
+				INFOPLIST_FILE = "Crime ReportsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishaen.Crime-ReportsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crime Reports.app/Crime Reports";
+			};
+			name = Debug;
+		};
+		A0E7AC6A2050692E00E3410D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS4WD246Q6;
+				INFOPLIST_FILE = "Crime ReportsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishaen.Crime-ReportsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Crime Reports.app/Crime Reports";
+			};
+			name = Release;
+		};
+		A0E7AC6C2050692E00E3410D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS4WD246Q6;
+				INFOPLIST_FILE = "Crime ReportsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishaen.Crime-ReportsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Crime Reports";
+			};
+			name = Debug;
+		};
+		A0E7AC6D2050692E00E3410D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XS4WD246Q6;
+				INFOPLIST_FILE = "Crime ReportsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chrishaen.Crime-ReportsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Crime Reports";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A0E7AC362050692E00E3410D /* Build configuration list for PBXProject "Crime Reports" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0E7AC632050692E00E3410D /* Debug */,
+				A0E7AC642050692E00E3410D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0E7AC652050692E00E3410D /* Build configuration list for PBXNativeTarget "Crime Reports" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0E7AC662050692E00E3410D /* Debug */,
+				A0E7AC672050692E00E3410D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0E7AC682050692E00E3410D /* Build configuration list for PBXNativeTarget "Crime ReportsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0E7AC692050692E00E3410D /* Debug */,
+				A0E7AC6A2050692E00E3410D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A0E7AC6B2050692E00E3410D /* Build configuration list for PBXNativeTarget "Crime ReportsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0E7AC6C2050692E00E3410D /* Debug */,
+				A0E7AC6D2050692E00E3410D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0E7AC332050692E00E3410D /* Project object */;
+}

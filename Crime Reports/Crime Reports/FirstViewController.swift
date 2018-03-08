@@ -19,11 +19,13 @@ class FirstViewController: UIViewController {
     //View Button Outlet
     @IBOutlet weak var viewButton: UIBarButtonItem!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         mapView?.showsUserLocation = true
         requestLocationAccess()
+        
     }
 
     override func didReceiveMemoryWarning() {

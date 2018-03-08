@@ -16,6 +16,7 @@
 		A0E7AC562050692E00E3410D /* Crime_ReportsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC552050692E00E3410D /* Crime_ReportsTests.swift */; };
 		A0E7AC612050692E00E3410D /* Crime_ReportsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC602050692E00E3410D /* Crime_ReportsUITests.swift */; };
 		A0E7AC742050D15900E3410D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E7AC6F205069BF00E3410D /* MapKit.framework */; };
+		A0E7AC842051C1CC00E3410D /* SODAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC832051C1CB00E3410D /* SODAClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		A0E7AC602050692E00E3410D /* Crime_ReportsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crime_ReportsUITests.swift; sourceTree = "<group>"; };
 		A0E7AC622050692E00E3410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0E7AC6F205069BF00E3410D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A0E7AC832051C1CB00E3410D /* SODAClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SODAClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		A0E7AC3D2050692E00E3410D /* Crime Reports */ = {
 			isa = PBXGroup;
 			children = (
+				A0E7AC832051C1CB00E3410D /* SODAClient.swift */,
 				A0E7AC3E2050692E00E3410D /* AppDelegate.swift */,
 				A0E7AC402050692E00E3410D /* FirstViewController.swift */,
 				A0E7AC422050692E00E3410D /* SecondViewController.swift */,
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0E7AC432050692E00E3410D /* SecondViewController.swift in Sources */,
+				A0E7AC842051C1CC00E3410D /* SODAClient.swift in Sources */,
 				A0E7AC3F2050692E00E3410D /* AppDelegate.swift in Sources */,
 				A0E7AC412050692E00E3410D /* FirstViewController.swift in Sources */,
 			);

@@ -11,7 +11,7 @@ import UIKit
 class SecondViewController: UITableViewController {
     
     //SODA Client 3CYKTT42HJUDGalN2tURvsYoi
-    let client = SODAClient(domain: "data.seattle.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")
+    let client = SODAClient(domain: "data.buffalony.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")
     //Crime Reports
     let cellId = "EventSummaryCell"
     var data: [[String: Any]] = []
@@ -33,10 +33,10 @@ class SecondViewController: UITableViewController {
     @objc func refresh (_ sender: Any) {
         // there are about a dozen 1990 records in this particular database that have an incorrectly formatted
         // cad_event_number, so we'll filter them out to get most recent events first.
-        let cngQuery = client.query(dataset: "3k2p-39jp").filter("event_clearance_group IS NOT NULL AND cad_event_number < '9000209585'")
+        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '2017-01-01T01:00:00.000'")
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        cngQuery.orderDescending("cad_event_number").get { res in
+        cngQuery.orderDescending("incident_datetime").get { res in
             switch res {
             case .dataset (let data):
                 // Update our data
@@ -63,12 +63,12 @@ class SecondViewController: UITableViewController {
         
         let item = data[indexPath.row]
         
-        let name = item["event_clearance_description"]! as! String
+        let name = item["incident_type_primary"]! as! String
         c?.textLabel?.text = name
         
-        let street = item["hundred_block_location"]! as! String
-        let city = "Seattle"
-        let state = "WA"
+        let street = item["address_1"]! as! String
+        let city = "Buffalo"
+        let state = "NY"
         c?.detailTextLabel?.text = "\(street), \(city), \(state)"
         
         return c!

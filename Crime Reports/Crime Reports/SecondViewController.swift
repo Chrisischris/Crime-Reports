@@ -11,34 +11,32 @@ import UIKit
 class SecondViewController: UITableViewController {
     
     //SODA Client 3CYKTT42HJUDGalN2tURvsYoi
-    let client = SODAClient(domain: "data.seattle.gov", token: "CGxaHQoQlgQSev4zyUh5aR5J3")
+    let client = SODAClient(domain: "data.seattle.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")
     //Crime Reports
-    //let crimeReports = client.queryDataset("d6g9-xbgu")
-    var data: [[String: Any]]! = []
     let cellId = "EventSummaryCell"
+    var data: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // Create a pull-to-refresh control
+        refreshControl = UIRefreshControl ()
+        refreshControl?.addTarget(self, action: #selector(SecondViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        
         // Auto-refresh
         refresh(self)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     /// Asynchronous performs the data query then updates the UI
-    func refresh (_ sender: Any) {
-        
+    /// Asynchronous performs the data query then updates the UI
+    @objc func refresh (_ sender: Any) {
         // there are about a dozen 1990 records in this particular database that have an incorrectly formatted
         // cad_event_number, so we'll filter them out to get most recent events first.
-        let crimeReports = client.query(dataset: "3k2p-39jp").filter("event_clearance_group IS NOT NULL AND cad_event_number < '9000209585'")
+        let cngQuery = client.query(dataset: "3k2p-39jp").filter("event_clearance_group IS NOT NULL AND cad_event_number < '9000209585'")
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        crimeReports.orderDescending("cad_event_number").get { res in
+        cngQuery.orderDescending("cad_event_number").get { res in
             switch res {
             case .dataset (let data):
                 // Update our data
@@ -50,6 +48,7 @@ class SecondViewController: UITableViewController {
             }
             
             // Update the UI
+            self.refreshControl?.endRefreshing()
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.tableView.reloadData()
         }

@@ -28,7 +28,7 @@ class SecondViewController: UITableViewController {
         refresh(self)
     }
 
-    /// Asynchronous performs the data query then updates the UI
+    
     /// Asynchronous performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
         // there are about a dozen 1990 records in this particular database that have an incorrectly formatted

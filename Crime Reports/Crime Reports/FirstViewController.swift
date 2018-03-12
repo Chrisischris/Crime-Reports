@@ -31,6 +31,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         mapView?.showsUserLocation = true
         requestLocationAccess()
         
+        data.removeAll()
+        
         // Auto-refresh
         refresh(self)
         
@@ -43,7 +45,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     
     // Performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
-        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '2017-01-01T01:00:00.000'")
+        // Warn about setting limit too high
+        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '2017-01-01T01:00:00.000'").limit(10000000000000)
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         cngQuery.orderDescending("incident_datetime").get { res in
@@ -76,12 +79,10 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         self.data = data
         
         // Max Report Distance From Each Other in meters
-        let maxDistance = 1650.0
+        let maxDistance = 1600.0
         // Placeholder for actual data
         var tempData: [[Double]] = []
-        // Points to be drawn on map
-        var sectorPoints: [CLLocationCoordinate2D] = []
-
+        
         
         var anns : [MKAnnotation] = []
         for item in data {
@@ -101,61 +102,88 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             anns.append(a)
         }
         
-        // Filters Points by set max Distance from one another
-        let coordinate1 = CLLocation(latitude: tempData[0][0], longitude: tempData[0][1])
-        var i = 0
-        repeat {
-            let coordinate2 = CLLocation(latitude: tempData[i][0], longitude: tempData[i][1])
-            if (coordinate2.distance(from: coordinate1) <= maxDistance){
-                sectorPoints.append(CLLocationCoordinate2D(latitude: tempData[i][0], longitude: tempData[i][1]))
-                tempData.remove(at: i)
-                
-            }else{
-                i += 1
-            }
-        } while i < tempData.count
+        while (tempData.count > 1){
+            // Points to be drawn on map
+            var sectorPoints: [CLLocationCoordinate2D] = []
+            
+            // Filters Points by set max Distance from one another
+            let coordinate1 = CLLocation(latitude: tempData[0][0], longitude: tempData[0][1])
+            tempData.remove(at: 0)
+            var i = 0
+            repeat {
+                // Removes Empty Fields
+                if (tempData[i][0] == 0 || tempData[i][1] == 0){
+                    tempData.remove(at: i)
+                }else{
+                    let coordinate2 = CLLocation(latitude: tempData[i][0], longitude: tempData[i][1])
+                    if (coordinate2.distance(from: coordinate1) <= maxDistance){
+                        sectorPoints.append(CLLocationCoordinate2D(latitude: tempData[i][0], longitude: tempData[i][1]))
+                        tempData.remove(at: i)
+                        
+                    }else{
+                        i += 1
+                    }
+                }
+            } while i < tempData.count
         
-        // Finds Outside Coordinates
-        var shapeCoordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D(latitude: -180, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: -180), CLLocationCoordinate2D(latitude: 0, longitude: -180),
-            CLLocationCoordinate2D(latitude: 90, longitude: -180), CLLocationCoordinate2D(latitude: 90, longitude: 0),
-            CLLocationCoordinate2D(latitude: 90, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: 0)]
-        for item in sectorPoints {
-            // Top Left
-            if (item.longitude < shapeCoordinates[0].longitude && item.latitude > shapeCoordinates[0].latitude){
-                shapeCoordinates[0] = item
+            // Finds Outside Coordinates
+            var shapeCoordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D(latitude: -180, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: -180), CLLocationCoordinate2D(latitude: 0, longitude: -180),
+                CLLocationCoordinate2D(latitude: 90, longitude: -180), CLLocationCoordinate2D(latitude: 90, longitude: 0),
+                CLLocationCoordinate2D(latitude: 90, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: 0)]
+            for item in sectorPoints {
+                // Top Left
+                if (item.longitude < shapeCoordinates[0].longitude && item.latitude > shapeCoordinates[0].latitude){
+                    shapeCoordinates[0] = item
+                }
+                // Top Middle
+                if (item.latitude > shapeCoordinates[1].latitude){
+                    shapeCoordinates[1] = item
+                }else if (shapeCoordinates[1].latitude == 0){
+                    shapeCoordinates[1] = shapeCoordinates[0]
+                }
+                // Top Right
+                if (item.longitude > shapeCoordinates[2].longitude && item.latitude > shapeCoordinates[2].latitude){
+                    shapeCoordinates[2] = item
+                }else if (shapeCoordinates[2].latitude == 0){
+                    shapeCoordinates[2] = shapeCoordinates[1]
+                }
+                // Right Middle
+                if (item.longitude > shapeCoordinates[3].longitude){
+                    shapeCoordinates[3] = item
+                }else if (shapeCoordinates[3].latitude == 0){
+                    shapeCoordinates[3] = shapeCoordinates[2]
+                }
+                // Bottom Right
+                if (item.longitude > shapeCoordinates[4].longitude && item.latitude < shapeCoordinates[4].latitude){
+                    shapeCoordinates[4] = item
+                }else if (shapeCoordinates[4].latitude == 90){
+                    shapeCoordinates[4] = shapeCoordinates[3]
+                }
+                // Bottom Middle
+                if (item.latitude < shapeCoordinates[5].latitude){
+                    shapeCoordinates[5] = item
+                }else if (shapeCoordinates[5].latitude == 90){
+                    shapeCoordinates[5] = shapeCoordinates[4]
+                }
+                // Bottom Left
+                if (item.longitude < shapeCoordinates[6].longitude && item.latitude < shapeCoordinates[6].latitude){
+                    shapeCoordinates[6] = item
+                }else if (shapeCoordinates[6].latitude == 90){
+                    shapeCoordinates[6] = shapeCoordinates[5]
+                }
+                // Left Middle
+                if (item.longitude < shapeCoordinates[7].longitude){
+                    shapeCoordinates[7] = item
+                }else  if (shapeCoordinates[7].latitude == 0){
+                    shapeCoordinates[7] = shapeCoordinates[6]
+                }
             }
-            // Top Middle
-            if (item.latitude > shapeCoordinates[1].latitude){
-                shapeCoordinates[1] = item
-            }
-            // Top Right
-            if (item.longitude > shapeCoordinates[2].longitude && item.latitude > shapeCoordinates[2].latitude){
-                shapeCoordinates[2] = item
-            }
-            // Right Middle
-            if (item.longitude > shapeCoordinates[3].longitude){
-                shapeCoordinates[3] = item
-            }
-            // Bottom Right
-            if (item.longitude > shapeCoordinates[4].longitude && item.latitude < shapeCoordinates[4].latitude){
-                shapeCoordinates[4] = item
-            }
-            // Bottom Middle
-            if (item.latitude < shapeCoordinates[5].latitude){
-                shapeCoordinates[5] = item
-            }
-            // Bottom Left
-            if (item.longitude < shapeCoordinates[6].longitude && item.latitude < shapeCoordinates[6].latitude){
-                shapeCoordinates[6] = item
-            }
-            // Left Middle
-            if (item.longitude < shapeCoordinates[7].longitude){
-                shapeCoordinates[7] = item
+            
+            if (shapeCoordinates[0].latitude != -180){
+                let polygon = MKPolygon(coordinates: shapeCoordinates, count: shapeCoordinates.count)
+                mapView?.add(polygon)
             }
         }
-        
-        let polygon = MKPolygon(coordinates: shapeCoordinates, count: shapeCoordinates.count)
-        mapView?.add(polygon)
     }
     
     // mapView Renderer
@@ -173,6 +201,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     //View Button Clicked
     @IBAction func viewButtonClicked(_ sender: UIButton) {
         print("BUTTON PRESSED")
+        print(data.count)
         drawBlocks(withData: data)
     }
     

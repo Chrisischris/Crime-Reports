@@ -39,14 +39,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 42.89, longitude: -78.88), span: span)
         mapView.setRegion(region, animated: true)
         
-        // Draws Polygons
-        //addPolygon()
-       
-        //update(withData: data, animated: true)
-        
     }
     
-    /// Asynchronous performs the data query then updates the UI
+    // Performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
         let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '2017-01-01T01:00:00.000'")
         
@@ -70,16 +65,13 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     //Annotates Map With Blocks of Color Determined by ammount of reports
     func drawBlocks(withData data: [[String: Any]]!) {
         // Clear Old Annotations
-        if mapView.annotations.count > 0 {
-            let ex = mapView.annotations
-            mapView.removeAnnotations(ex)
+        if mapView.overlays.count > 0 {
+            self.mapView.overlays.forEach {
+                if !($0 is MKUserLocation) {
+                    self.mapView.remove($0)
+                }
+            }
         }
-        
-        // Longitude and latitude limits
-        var minLatitude : CLLocationDegrees = 90.0
-        var maxLatitude : CLLocationDegrees = -90.0
-        var minLongitude : CLLocationDegrees = 180.0
-        var maxLongitude : CLLocationDegrees = -180.0
         
         self.data = data
         
@@ -101,11 +93,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             // Set coordinates to tempData
             tempData.append([lat, lon])
             
-            minLatitude = min(minLatitude, lat)
-            maxLatitude = max(maxLatitude, lat)
-            minLongitude = min(minLongitude, lon)
-            maxLongitude = max(maxLongitude, lon)
-            
+            // Not Used Yet
             let a = MKPointAnnotation()
             a.title = item["incident_type_primary"] as? String ?? ""
             a.coordinate = CLLocationCoordinate2D (latitude: lat, longitude: lon)
@@ -113,9 +101,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             anns.append(a)
         }
         
-        
+        // Filters Points by set max Distance from one another
         let coordinate1 = CLLocation(latitude: tempData[0][0], longitude: tempData[0][1])
-
         var i = 0
         repeat {
             let coordinate2 = CLLocation(latitude: tempData[i][0], longitude: tempData[i][1])
@@ -128,85 +115,64 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
         } while i < tempData.count
         
-        let polygon = MKPolygon(coordinates: sectorPoints, count: sectorPoints.count)
+        // Finds Outside Coordinates
+        var shapeCoordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D(latitude: -180, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: -180), CLLocationCoordinate2D(latitude: 0, longitude: -180),
+            CLLocationCoordinate2D(latitude: 90, longitude: -180), CLLocationCoordinate2D(latitude: 90, longitude: 0),
+            CLLocationCoordinate2D(latitude: 90, longitude: 0), CLLocationCoordinate2D(latitude: 0, longitude: 0)]
+        for item in sectorPoints {
+            // Top Left
+            if (item.longitude < shapeCoordinates[0].longitude && item.latitude > shapeCoordinates[0].latitude){
+                shapeCoordinates[0] = item
+            }
+            // Top Middle
+            if (item.latitude > shapeCoordinates[1].latitude){
+                shapeCoordinates[1] = item
+            }
+            // Top Right
+            if (item.longitude > shapeCoordinates[2].longitude && item.latitude > shapeCoordinates[2].latitude){
+                shapeCoordinates[2] = item
+            }
+            // Right Middle
+            if (item.longitude > shapeCoordinates[3].longitude){
+                shapeCoordinates[3] = item
+            }
+            // Bottom Right
+            if (item.longitude > shapeCoordinates[4].longitude && item.latitude < shapeCoordinates[4].latitude){
+                shapeCoordinates[4] = item
+            }
+            // Bottom Middle
+            if (item.latitude < shapeCoordinates[5].latitude){
+                shapeCoordinates[5] = item
+            }
+            // Bottom Left
+            if (item.longitude < shapeCoordinates[6].longitude && item.latitude < shapeCoordinates[6].latitude){
+                shapeCoordinates[6] = item
+            }
+            // Left Middle
+            if (item.longitude < shapeCoordinates[7].longitude){
+                shapeCoordinates[7] = item
+            }
+        }
+        
+        let polygon = MKPolygon(coordinates: shapeCoordinates, count: shapeCoordinates.count)
         mapView?.add(polygon)
     }
     
-    // Draws Polygons
-    func addPolygon() {
-        var locations = [CLLocationCoordinate2D(latitude:42.8878136848238 , longitude:-78.877777858282 ), CLLocationCoordinate2D(latitude:42.91441 , longitude:-78.83839 ), CLLocationCoordinate2D(latitude:42.94835949967193 , longitude:-78.88673757608235)]
-        let polygon = MKPolygon(coordinates: &locations, count: locations.count)
-        mapView?.add(polygon)
-    }
-    
+    // mapView Renderer
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
             renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-            renderer.strokeColor = UIColor.orange
+            renderer.strokeColor = UIColor.red
             renderer.lineWidth = 2
             return renderer
         }
         return MKOverlayRenderer()
     }
     
-    // Not Going to be used just for reference
-    func update(withData data: [[String: Any]]!, animated: Bool) {
-        
-        // Remember the data because we may not be able to display it yet
-        self.data = data
-        
-        if (!isViewLoaded) {
-            return
-        }
-        
-        // Clear old annotations
-        if mapView.annotations.count > 0 {
-            let ex = mapView.annotations
-            mapView.removeAnnotations(ex)
-        }
-        
-        // Longitude and latitude limits
-        var minLatitude : CLLocationDegrees = 90.0
-        var maxLatitude : CLLocationDegrees = -90.0
-        var minLongitude : CLLocationDegrees = 180.0
-        var maxLongitude : CLLocationDegrees = -180.0
-        
-        // Create annotations for the data
-        var anns : [MKAnnotation] = []
-        for item in data {
-            
-            // item["incident_location"] != nil
-            guard let lat = (item["latitude"] as? NSString)?.doubleValue,
-                let lon = (item["longitude"] as? NSString)?.doubleValue else { continue }
-            
-            minLatitude = min(minLatitude, lat)
-            maxLatitude = max(maxLatitude, lat)
-            minLongitude = min(minLongitude, lon)
-            maxLongitude = max(maxLongitude, lon)
-            
-            let a = MKPointAnnotation()
-            a.title = item["incident_type_primary"] as? String ?? ""
-            a.coordinate = CLLocationCoordinate2D (latitude: lat, longitude: lon)
-            a.subtitle = item["incident_datetime"] as? String ?? item["address_1"] as? String ?? ""
-            anns.append(a)
-        }
-        
-        // Set the annotations and center the map
-        if (anns.count > 0) {
-            mapView.addAnnotations(anns)
-            let span = MKCoordinateSpanMake(maxLatitude - minLatitude, maxLongitude - minLongitude)
-            let center = CLLocationCoordinate2D(latitude: (maxLatitude + minLatitude)/2.0, longitude: (maxLongitude + minLongitude)/2.0)
-            let region = MKCoordinateRegionMake(center, span)
-            //            let r = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lata*w, longitude: lona*w), 2000, 2000)
-            mapView.setRegion(region, animated: animated)
-        }
-    }
-    
     //View Button Clicked
     @IBAction func viewButtonClicked(_ sender: UIButton) {
         print("BUTTON PRESSED")
-        //update(withData: data, animated: true)
         drawBlocks(withData: data)
     }
     

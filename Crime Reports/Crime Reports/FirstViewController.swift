@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, MKMapViewDelegate{
     
     //Location Manager
     let locationManager = CLLocationManager()
@@ -31,22 +31,23 @@ class FirstViewController: UIViewController {
         mapView?.showsUserLocation = true
         requestLocationAccess()
         
+        // Auto-refresh
+        refresh(self)
+        
         // Sets default view
         let span = MKCoordinateSpanMake(0.5, 0.5)
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 42.89, longitude: -78.88), span: span)
         mapView.setRegion(region, animated: true)
         
         // Draws Polygons
-        addPolygon()
+        //addPolygon()
+       
+        //update(withData: data, animated: true)
         
-        // Auto-refresh
-        refresh(self)
     }
     
     /// Asynchronous performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
-        // there are about a dozen 1990 records in this particular database that have an incorrectly formatted
-        // cad_event_number, so we'll filter them out to get most recent events first.
         let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '2017-01-01T01:00:00.000'")
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -67,28 +68,68 @@ class FirstViewController: UIViewController {
     }
     
     //Annotates Map With Blocks of Color Determined by ammount of reports
-    func drawBlocks() {
+    func drawBlocks(withData data: [[String: Any]]!) {
+        // Clear Old Annotations
+        if mapView.annotations.count > 0 {
+            let ex = mapView.annotations
+            mapView.removeAnnotations(ex)
+        }
+        
+        // Longitude and latitude limits
+        var minLatitude : CLLocationDegrees = 90.0
+        var maxLatitude : CLLocationDegrees = -90.0
+        var minLongitude : CLLocationDegrees = 180.0
+        var maxLongitude : CLLocationDegrees = -180.0
+        
+        self.data = data
+        
         // Max Report Distance From Each Other in meters
-        let maxDistance = 1690.0
+        let maxDistance = 1650.0
         // Placeholder for actual data
-        var data: [[Double]] = [[1, 2], [3, 5], [5, 4], [4,1]]
+        var tempData: [[Double]] = []
         // Points to be drawn on map
-        var sectorPoints: [[Double]] = []
+        var sectorPoints: [CLLocationCoordinate2D] = []
+
         
-        let coordinate1 = CLLocation(latitude: data[0][0], longitude: data[0][1])
-        sectorPoints.append(data[0])
-        data.remove(at: 0)
+        var anns : [MKAnnotation] = []
+        for item in data {
+            
+            // item["incident_location"] != nil
+            guard let lat = (item["latitude"] as? NSString)?.doubleValue,
+                let lon = (item["longitude"] as? NSString)?.doubleValue else { continue }
+            
+            // Set coordinates to tempData
+            tempData.append([lat, lon])
+            
+            minLatitude = min(minLatitude, lat)
+            maxLatitude = max(maxLatitude, lat)
+            minLongitude = min(minLongitude, lon)
+            maxLongitude = max(maxLongitude, lon)
+            
+            let a = MKPointAnnotation()
+            a.title = item["incident_type_primary"] as? String ?? ""
+            a.coordinate = CLLocationCoordinate2D (latitude: lat, longitude: lon)
+            a.subtitle = item["incident_datetime"] as? String ?? item["address_1"] as? String ?? ""
+            anns.append(a)
+        }
         
+        
+        let coordinate1 = CLLocation(latitude: tempData[0][0], longitude: tempData[0][1])
+
         var i = 0
         repeat {
-            let coordinate2 = CLLocation(latitude: data[i][0], longitude: data[i][1])
+            let coordinate2 = CLLocation(latitude: tempData[i][0], longitude: tempData[i][1])
             if (coordinate2.distance(from: coordinate1) <= maxDistance){
-                sectorPoints.append([data[i][0], data[i][1]])
-                data.remove(at: i)
+                sectorPoints.append(CLLocationCoordinate2D(latitude: tempData[i][0], longitude: tempData[i][1]))
+                tempData.remove(at: i)
+                
             }else{
                 i += 1
             }
-        } while i < data.count
+        } while i < tempData.count
+        
+        let polygon = MKPolygon(coordinates: sectorPoints, count: sectorPoints.count)
+        mapView?.add(polygon)
     }
     
     // Draws Polygons
@@ -109,9 +150,64 @@ class FirstViewController: UIViewController {
         return MKOverlayRenderer()
     }
     
+    // Not Going to be used just for reference
+    func update(withData data: [[String: Any]]!, animated: Bool) {
+        
+        // Remember the data because we may not be able to display it yet
+        self.data = data
+        
+        if (!isViewLoaded) {
+            return
+        }
+        
+        // Clear old annotations
+        if mapView.annotations.count > 0 {
+            let ex = mapView.annotations
+            mapView.removeAnnotations(ex)
+        }
+        
+        // Longitude and latitude limits
+        var minLatitude : CLLocationDegrees = 90.0
+        var maxLatitude : CLLocationDegrees = -90.0
+        var minLongitude : CLLocationDegrees = 180.0
+        var maxLongitude : CLLocationDegrees = -180.0
+        
+        // Create annotations for the data
+        var anns : [MKAnnotation] = []
+        for item in data {
+            
+            // item["incident_location"] != nil
+            guard let lat = (item["latitude"] as? NSString)?.doubleValue,
+                let lon = (item["longitude"] as? NSString)?.doubleValue else { continue }
+            
+            minLatitude = min(minLatitude, lat)
+            maxLatitude = max(maxLatitude, lat)
+            minLongitude = min(minLongitude, lon)
+            maxLongitude = max(maxLongitude, lon)
+            
+            let a = MKPointAnnotation()
+            a.title = item["incident_type_primary"] as? String ?? ""
+            a.coordinate = CLLocationCoordinate2D (latitude: lat, longitude: lon)
+            a.subtitle = item["incident_datetime"] as? String ?? item["address_1"] as? String ?? ""
+            anns.append(a)
+        }
+        
+        // Set the annotations and center the map
+        if (anns.count > 0) {
+            mapView.addAnnotations(anns)
+            let span = MKCoordinateSpanMake(maxLatitude - minLatitude, maxLongitude - minLongitude)
+            let center = CLLocationCoordinate2D(latitude: (maxLatitude + minLatitude)/2.0, longitude: (maxLongitude + minLongitude)/2.0)
+            let region = MKCoordinateRegionMake(center, span)
+            //            let r = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: lata*w, longitude: lona*w), 2000, 2000)
+            mapView.setRegion(region, animated: animated)
+        }
+    }
+    
     //View Button Clicked
     @IBAction func viewButtonClicked(_ sender: UIButton) {
         print("BUTTON PRESSED")
+        //update(withData: data, animated: true)
+        drawBlocks(withData: data)
     }
     
     //Request Location Access
@@ -132,8 +228,5 @@ class FirstViewController: UIViewController {
 
 }
 
-extension FirstViewController: MKMapViewDelegate {
-    
-}
 
 

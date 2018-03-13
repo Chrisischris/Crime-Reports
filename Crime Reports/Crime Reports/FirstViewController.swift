@@ -15,10 +15,14 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     //Location Manager
     let locationManager = CLLocationManager()
     
+    //Container View Outlet
+    @IBOutlet weak var containerView: UIView!
     //Map View Outlet
     @IBOutlet weak var mapView: MKMapView!
     //View Button Outlet
     @IBOutlet weak var viewButton: UIBarButtonItem!
+    //Refresh Button Outlet
+    @IBOutlet weak var refreshButton: UIButton!
     
     //SODA Client 3CYKTT42HJUDGalN2tURvsYoi
     let client = SODAClient(domain: "data.buffalony.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")
@@ -198,8 +202,14 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         return MKOverlayRenderer()
     }
     
-    //View Button Clicked
+    // View Button Clicked
     @IBAction func viewButtonClicked(_ sender: UIButton) {
+        // Set Container View Visibilty
+        containerView.isHidden = !containerView.isHidden
+    }
+    
+    // Refresh Button Clicked
+    @IBAction func refreshButtonClicked(_ sender: Any) {
         print("BUTTON PRESSED")
         print(data.count)
         drawBlocks(withData: data)

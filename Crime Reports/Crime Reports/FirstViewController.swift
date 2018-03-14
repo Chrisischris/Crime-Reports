@@ -10,6 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
+// Variables
+var startDateValue = "2017-01-01"
+var endDateValue = "2099-01-01"
+//Crime Reports Data
+var data: [[String: Any]] = []
+
 class FirstViewController: UIViewController, MKMapViewDelegate{
     
     //Location Manager
@@ -27,8 +33,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     
     //SODA Client 3CYKTT42HJUDGalN2tURvsYoi
     let client = SODAClient(domain: "data.buffalony.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")
-    //Crime Reports Data
-    var data: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,15 +54,15 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     
     // Performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
+        data.removeAll()
         // Warn about setting limit too high
-        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '2017-01-01T01:00:00.000'").limit(10000000000000)
-        
+        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         cngQuery.orderDescending("incident_datetime").get { res in
             switch res {
-            case .dataset (let data):
+            case .dataset (let adata):
                 // Update our data
-                self.data = data
+                data = adata
             case .error (let err):
                 let errorMessage = (err as NSError).userInfo.debugDescription
                 let alertController = UIAlertController(title: "Error Refreshing", message: errorMessage, preferredStyle:.alert)
@@ -67,11 +71,12 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             
             // Update the UI
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            self.drawBlocks(withData: data)
         }
     }
     
     //Annotates Map With Blocks of Color Determined by ammount of reports
-    func drawBlocks(withData data: [[String: Any]]!) {
+    func drawBlocks(withData adata: [[String: Any]]!) {
         // Clear Old Annotations
         if mapView.overlays.count > 0 {
             self.mapView.overlays.forEach {
@@ -81,7 +86,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
         }
         
-        self.data = data
+        data = adata
         
         // Max Report Distance From Each Other in meters
         let maxDistance = 1600.0
@@ -213,7 +218,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     @IBAction func refreshButtonClicked(_ sender: Any) {
         print("BUTTON PRESSED")
         print(data.count)
-        drawBlocks(withData: data)
+        refresh(self)
     }
     
     //Request Location Access
@@ -232,6 +237,37 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         }
     }
 
+}
+
+// Drop Down Class
+class dropDownController: UIViewController, UITextFieldDelegate{
+    @IBOutlet weak var startDate: UITextField!
+    @IBOutlet weak var endDate: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        startDate.delegate = self
+        endDate.delegate = self
+    }
+    
+    @IBAction func printValue(_ sender: UITextField) {
+        if (sender == startDate){
+            startDateValue = sender.text!
+        }
+        if (sender == endDate){
+            endDateValue = sender.text!
+        }
+        print(startDateValue)
+        print(endDateValue)
+    }
+    
+    //Keyboard Dismiss
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
 
 

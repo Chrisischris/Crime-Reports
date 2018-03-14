@@ -13,6 +13,7 @@ import CoreLocation
 // Variables
 var startDateValue = "2017-01-01"
 var endDateValue = "2099-01-01"
+var maxDistance = 1659.345
 //Crime Reports Data
 var data: [[String: Any]] = []
 
@@ -88,8 +89,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         
         data = adata
         
-        // Max Report Distance From Each Other in meters
-        let maxDistance = 1600.0
         // Placeholder for actual data
         var tempData: [[Double]] = []
         
@@ -243,6 +242,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
 class dropDownController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
+    @IBOutlet weak var radiusSlider: UISlider!
+    @IBOutlet weak var radiusInMiles: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -260,6 +261,13 @@ class dropDownController: UIViewController, UITextFieldDelegate{
         }
         print(startDateValue)
         print(endDateValue)
+    }
+    
+    @IBAction func radiusChanged(_ sender: UISlider) {
+        maxDistance = Double(sender.value)
+        print(maxDistance)
+        let maxDistanceFeet = String(maxDistance * 3.2808)
+        radiusInMiles.text = "Radius In Feet:" + maxDistanceFeet
     }
     
     //Keyboard Dismiss

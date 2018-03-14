@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0A1477920589ABF00427AC3 /* dropDownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A1477820589ABF00427AC3 /* dropDownController.swift */; };
 		A0E7AC3F2050692E00E3410D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC3E2050692E00E3410D /* AppDelegate.swift */; };
 		A0E7AC412050692E00E3410D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC402050692E00E3410D /* FirstViewController.swift */; };
 		A0E7AC432050692E00E3410D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E7AC422050692E00E3410D /* SecondViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A0A1477820589ABF00427AC3 /* dropDownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dropDownController.swift; sourceTree = "<group>"; };
 		A0E7AC3B2050692E00E3410D /* Crime Reports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crime Reports.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E7AC3E2050692E00E3410D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0E7AC402050692E00E3410D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				A0E7AC472050692E00E3410D /* Assets.xcassets */,
 				A0E7AC492050692E00E3410D /* LaunchScreen.storyboard */,
 				A0E7AC4C2050692E00E3410D /* Info.plist */,
+				A0A1477820589ABF00427AC3 /* dropDownController.swift */,
 			);
 			path = "Crime Reports";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A1477920589ABF00427AC3 /* dropDownController.swift in Sources */,
 				A0E7AC432050692E00E3410D /* SecondViewController.swift in Sources */,
 				A0E7AC842051C1CC00E3410D /* SODAClient.swift in Sources */,
 				A0E7AC3F2050692E00E3410D /* AppDelegate.swift in Sources */,

@@ -23,6 +23,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var viewButton: UIBarButtonItem!
     //Refresh Button Outlet
     @IBOutlet weak var refreshButton: UIButton!
+
     
     //SODA Client 3CYKTT42HJUDGalN2tURvsYoi
     let client = SODAClient(domain: "data.buffalony.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")

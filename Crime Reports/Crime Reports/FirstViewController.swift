@@ -14,6 +14,7 @@ import CoreLocation
 var startDateValue = "2017-01-01"
 var endDateValue = "2099-01-01"
 var maxDistance = 1659.345
+var fillColor = UIColor.black.withAlphaComponent(0.5)
 //Crime Reports Data
 var data: [[String: Any]] = []
 
@@ -89,7 +90,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         
         data = adata
         
-        // Placeholder for actual data
         var tempData: [[Double]] = []
         
         
@@ -110,6 +110,43 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             a.subtitle = item["incident_datetime"] as? String ?? item["address_1"] as? String ?? ""
             anns.append(a)
         }
+        
+        var rangeFinder = tempData
+        var minPoints = 100000000
+        var maxPoints = 0
+        while (rangeFinder.count > 1){
+            let rangeCoordinate1 = CLLocation(latitude: rangeFinder[0][0], longitude: rangeFinder[0][1])
+            rangeFinder.remove(at: 0)
+            var currentCount = 0
+            var x = 0
+            repeat {
+                // Removes Empty Fields
+                if (rangeFinder[x][0] == 0 || rangeFinder[x][1] == 0){
+                    rangeFinder.remove(at: x)
+                }else{
+                    let rangeCoordinate2 = CLLocation(latitude: rangeFinder[x][0], longitude: rangeFinder[x][1])
+                    if (rangeCoordinate2.distance(from: rangeCoordinate1) <= maxDistance){
+                        currentCount += 1
+                        rangeFinder.remove(at: x)
+                    }else{
+                        x += 1
+                    }
+                }
+            } while x < rangeFinder.count
+            
+            if (currentCount > maxPoints){
+                maxPoints = currentCount
+            }
+            if (currentCount < minPoints && currentCount > 5){
+                minPoints = currentCount
+            }
+        }
+        
+        var colorRanges: [Int] = [0,0,0,0,0,0,0,0,0]
+        for index in 0...8 {
+            colorRanges[index] = minPoints + ((maxPoints - minPoints)/10) * (index + 1)
+        }
+        print(minPoints, maxPoints, colorRanges)
         
         while (tempData.count > 1){
             // Points to be drawn on map
@@ -189,6 +226,17 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
             
             if (shapeCoordinates[0].latitude != -180){
+                if (sectorPoints.count < colorRanges[0]){ fillColor = UIColor.blue.withAlphaComponent(0.35) }
+                if (sectorPoints.count > colorRanges[0]){ fillColor = UIColor.blue.withAlphaComponent(0.5) }
+                if (sectorPoints.count > colorRanges[1]){ fillColor = UIColor.green.withAlphaComponent(0.35) }
+                if (sectorPoints.count > colorRanges[2]){ fillColor = UIColor.green.withAlphaComponent(0.5) }
+                if (sectorPoints.count > colorRanges[3]){ fillColor = UIColor.yellow.withAlphaComponent(0.35) }
+                if (sectorPoints.count > colorRanges[4]){ fillColor = UIColor.yellow.withAlphaComponent(0.5) }
+                if (sectorPoints.count > colorRanges[5]){ fillColor = UIColor.orange.withAlphaComponent(0.35) }
+                if (sectorPoints.count > colorRanges[6]){ fillColor = UIColor.orange.withAlphaComponent(0.5) }
+                if (sectorPoints.count > colorRanges[7]){ fillColor = UIColor.red.withAlphaComponent(0.35) }
+                if (sectorPoints.count > colorRanges[8]){ fillColor = UIColor.red.withAlphaComponent(0.5) }
+                
                 let polygon = MKPolygon(coordinates: shapeCoordinates, count: shapeCoordinates.count)
                 mapView?.add(polygon)
             }
@@ -199,9 +247,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-            renderer.strokeColor = UIColor.red
-            renderer.lineWidth = 2
+            renderer.fillColor = fillColor
+            renderer.strokeColor = UIColor.black
+            renderer.lineWidth = 1
             return renderer
         }
         return MKOverlayRenderer()

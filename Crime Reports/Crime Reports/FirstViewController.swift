@@ -14,7 +14,6 @@ import CoreLocation
 var startDateValue = "2017-01-01"
 var endDateValue = "2099-01-01"
 var maxDistance = 1659.345
-var fillColor = UIColor.black.withAlphaComponent(0.5)
 //Crime Reports Data
 var data: [[String: Any]] = []
 
@@ -48,7 +47,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         refresh(self)
         
         // Sets default view
-        let span = MKCoordinateSpanMake(0.5, 0.5)
+        let span = MKCoordinateSpanMake(0.25, 0.25)
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 42.89, longitude: -78.88), span: span)
         mapView.setRegion(region, animated: true)
         
@@ -142,9 +141,9 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
         }
         
-        var colorRanges: [Int] = [0,0,0,0,0,0,0,0,0]
-        for index in 0...8 {
-            colorRanges[index] = minPoints + ((maxPoints - minPoints)/10) * (index + 1)
+        var colorRanges: [Int] = [0,0,0,0]
+        for index in 0...3 {
+            colorRanges[index] = minPoints + ((maxPoints - minPoints)/5) * (index + 1)
         }
         print(minPoints, maxPoints, colorRanges)
         
@@ -226,18 +225,14 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
             
             if (shapeCoordinates[0].latitude != -180){
-                if (sectorPoints.count < colorRanges[0]){ fillColor = UIColor.blue.withAlphaComponent(0.35) }
-                if (sectorPoints.count > colorRanges[0]){ fillColor = UIColor.blue.withAlphaComponent(0.5) }
-                if (sectorPoints.count > colorRanges[1]){ fillColor = UIColor.green.withAlphaComponent(0.35) }
-                if (sectorPoints.count > colorRanges[2]){ fillColor = UIColor.green.withAlphaComponent(0.5) }
-                if (sectorPoints.count > colorRanges[3]){ fillColor = UIColor.yellow.withAlphaComponent(0.35) }
-                if (sectorPoints.count > colorRanges[4]){ fillColor = UIColor.yellow.withAlphaComponent(0.5) }
-                if (sectorPoints.count > colorRanges[5]){ fillColor = UIColor.orange.withAlphaComponent(0.35) }
-                if (sectorPoints.count > colorRanges[6]){ fillColor = UIColor.orange.withAlphaComponent(0.5) }
-                if (sectorPoints.count > colorRanges[7]){ fillColor = UIColor.red.withAlphaComponent(0.35) }
-                if (sectorPoints.count > colorRanges[8]){ fillColor = UIColor.red.withAlphaComponent(0.5) }
-                
                 let polygon = MKPolygon(coordinates: shapeCoordinates, count: shapeCoordinates.count)
+                
+                if (sectorPoints.count < colorRanges[0]){polygon.title = "1"}
+                if (sectorPoints.count > colorRanges[0]){polygon.title = "2"}
+                if (sectorPoints.count > colorRanges[1]){polygon.title = "3"}
+                if (sectorPoints.count > colorRanges[2]){polygon.title = "4"}
+                if (sectorPoints.count > colorRanges[3]){polygon.title = "5"}
+                
                 mapView?.add(polygon)
             }
         }
@@ -246,11 +241,42 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     // mapView Renderer
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
-            let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-            renderer.fillColor = fillColor
-            renderer.strokeColor = UIColor.black
-            renderer.lineWidth = 1
-            return renderer
+            let title = overlay.title as? String
+            if (title == "1"){
+                let renderer1 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+                renderer1.fillColor = #colorLiteral(red: 0.9882352941, green: 0.7254901961, blue: 0.1764705882, alpha: 0.6)
+                renderer1.strokeColor = UIColor.black
+                renderer1.lineWidth = 0.1
+                return renderer1
+            }
+            if (title == "2"){
+                let renderer2 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+                renderer2.fillColor = #colorLiteral(red: 0.8156862745, green: 0.368627451, blue: 0.1450980392, alpha: 0.6)
+                renderer2.strokeColor = UIColor.black
+                renderer2.lineWidth = 0.1
+                return renderer2
+            }
+            if (title == "3"){
+                let renderer3 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+                renderer3.fillColor = #colorLiteral(red: 0.7019607843, green: 0.1254901961, blue: 0.1215686275, alpha: 0.6)
+                renderer3.strokeColor = UIColor.black
+                renderer3.lineWidth = 0.1
+                return renderer3
+            }
+            if (title == "4"){
+                let renderer4 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+                renderer4.fillColor = #colorLiteral(red: 0.4156862745, green: 0.1411764706, blue: 0.262745098, alpha: 0.6)
+                renderer4.strokeColor = UIColor.black
+                renderer4.lineWidth = 0.1
+                return renderer4
+            }
+            if (title == "5"){
+                let renderer5 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+                renderer5.fillColor = #colorLiteral(red: 0.1098039216, green: 0.1647058824, blue: 0.4196078431, alpha: 0.6)
+                renderer5.strokeColor = UIColor.black
+                renderer5.lineWidth = 0.1
+                return renderer5
+            }
         }
         return MKOverlayRenderer()
     }

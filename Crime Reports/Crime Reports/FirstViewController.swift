@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 // Variables
-var startDateValue = "2017-01-01"
+var startDateValue = "2018-01-01"
 var endDateValue = "2099-01-01"
 var maxDistance = 1659.345
 //Crime Reports Data
@@ -57,7 +57,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     @objc func refresh (_ sender: Any) {
         data.removeAll()
         // Warn about setting limit too high
-        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime > '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
+        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         cngQuery.orderDescending("incident_datetime").get { res in
             switch res {
@@ -314,40 +314,32 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
 
 // Drop Down Class
 class dropDownController: UIViewController, UITextFieldDelegate{
-    @IBOutlet weak var startDate: UITextField!
-    @IBOutlet weak var endDate: UITextField!
     @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var radiusInMiles: UILabel!
     
+    @IBOutlet weak var startDatePicker: UIDatePicker!
+    @IBOutlet weak var endDatePicker: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        startDate.delegate = self
-        endDate.delegate = self
     }
     
-    @IBAction func printValue(_ sender: UITextField) {
-        if (sender == startDate){
-            startDateValue = sender.text!
+    @IBAction func dateChanged(_ sender: UIDatePicker) {
+        if (sender == startDatePicker){
+            let dateString = String(describing: sender.date)
+            startDateValue = String(dateString.prefix(10))
         }
-        if (sender == endDate){
-            endDateValue = sender.text!
+        if (sender == endDatePicker){
+            let dateString = String(describing: sender.date)
+            endDateValue = String(dateString.prefix(10))
         }
-        print(startDateValue)
-        print(endDateValue)
     }
+
     
     @IBAction func radiusChanged(_ sender: UISlider) {
         maxDistance = Double(sender.value)
-        print(maxDistance)
-        let maxDistanceFeet = String(maxDistance * 3.2808)
-        radiusInMiles.text = "Radius In Feet:" + maxDistanceFeet
-    }
-    
-    //Keyboard Dismiss
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        let maxDistanceFeet = Int(maxDistance * 3.2808)
+        radiusInMiles.text = "Radius: " + String(maxDistanceFeet) + " ft"
     }
     
 }

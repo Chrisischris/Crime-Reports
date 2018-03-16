@@ -26,7 +26,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4DY-12-fok">
                                                 <rect key="frame" x="20" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Refresh"/>
+                                                <state key="normal" title="Reload"/>
                                                 <connections>
                                                     <action selector="refreshButtonClicked:" destination="9pv-A4-QxB" eventType="touchUpInside" id="lU5-87-WKF"/>
                                                 </connections>
@@ -55,9 +55,9 @@
                                 </connections>
                             </mapView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y77-6h-cTE">
-                                <rect key="frame" x="0.0" y="64" width="414" height="140"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="175"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="1ad-ia-cIO"/>
+                                    <constraint firstAttribute="height" constant="175" id="1ad-ia-cIO"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="emh-oC-V25" kind="embed" id="gHp-Qc-edS"/>
@@ -223,75 +223,68 @@
         <scene sceneID="TS2-OL-N8p">
             <objects>
                 <viewController title="dropDown" id="emh-oC-V25" customClass="dropDownController" customModule="Crime_Reports" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" alpha="0.75" contentMode="scaleToFill" id="0ge-Ek-MIL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                    <view key="view" alpha="0.90000000000000002" contentMode="scaleToFill" id="0ge-Ek-MIL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2017-01-01" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vt3-51-pwV">
-                                <rect key="frame" x="129" y="20" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="dismissKeyboard" destination="Isu-wR-iiS" eventType="touchUpOutside" id="Pv5-Rv-VrF"/>
-                                    <action selector="printValue:" destination="emh-oC-V25" eventType="editingDidEnd" id="439-KX-hkb"/>
-                                    <action selector="return:" destination="Isu-wR-iiS" eventType="editingDidEndOnExit" id="Y9Q-qZ-Ise"/>
-                                    <action selector="returnDismiss:" destination="Isu-wR-iiS" eventType="primaryActionTriggered" id="YI9-pO-npv"/>
-                                    <action selector="startDate:" destination="Isu-wR-iiS" eventType="primaryActionTriggered" id="s6N-nf-IhT"/>
-                                    <action selector="touchOutside:" destination="Isu-wR-iiS" eventType="touchUpOutside" id="jCO-an-LJM"/>
-                                    <action selector="zzzz:forEvent:" destination="Isu-wR-iiS" eventType="valueChanged" id="L8S-Oy-mbJ"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2099-01-01" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z2W-vs-c5k">
-                                <rect key="frame" x="276" y="20" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="printValue:" destination="emh-oC-V25" eventType="editingDidEnd" id="tfG-la-LLm"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Information about date range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3b-Uu-sc5">
-                                <rect key="frame" x="20" y="54" width="359" height="21"/>
+                                <rect key="frame" x="20" y="90" width="359" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1659.3499999999999" minValue="100" maxValue="3218.6900000000001" translatesAutoresizingMaskIntoConstraints="NO" id="WcC-z1-QyX">
-                                <rect key="frame" x="127" y="75" width="269" height="30"/>
+                                <rect key="frame" x="127" y="115" width="269" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="radiusChanged:" destination="emh-oC-V25" eventType="valueChanged" id="2ff-gO-nSa"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Max Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuf-kb-uVe">
-                                <rect key="frame" x="20" y="79" width="98" height="21"/>
+                                <rect key="frame" x="23" y="119" width="98" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Radius In Feet: 5444.0452756" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dx-d1-3Ru">
-                                <rect key="frame" x="20" y="112" width="359" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7M-Tz-t9H">
-                                <rect key="frame" x="263" y="25" width="7" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61a-f7-gGQ">
-                                <rect key="frame" x="20" y="25" width="89" height="21"/>
+                                <rect key="frame" x="20" y="8" width="89" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Oj-Lg-D3t">
+                                <rect key="frame" x="127" y="0.0" width="267" height="54"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="536486461.44055104">
+                                    <!--2018-01-01 08:01:01 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-31593539">
+                                    <!--2000-01-01 08:01:01 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="dateChanged:" destination="emh-oC-V25" eventType="valueChanged" id="XtR-f1-aZV"/>
+                                </connections>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="B49-Ai-aGO">
+                                <rect key="frame" x="127" y="43" width="267" height="54"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="542855084.44055104">
+                                    <!--2018-03-16 01:04:44 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-31593539">
+                                    <!--2000-01-01 08:01:01 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="dateChanged:" destination="emh-oC-V25" eventType="valueChanged" id="6wr-ib-kbe"/>
+                                </connections>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Radius: 5444 ft" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dx-d1-3Ru">
+                                <rect key="frame" x="23" y="142" width="359" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -300,16 +293,15 @@
                         <viewLayoutGuide key="safeArea" id="mcy-6n-GAa"/>
                     </view>
                     <connections>
-                        <outlet property="endDate" destination="Z2W-vs-c5k" id="n14-Kg-C0C"/>
+                        <outlet property="endDatePicker" destination="B49-Ai-aGO" id="qQX-75-yaa"/>
                         <outlet property="radiusInMiles" destination="7dx-d1-3Ru" id="JaV-pf-Yhq"/>
                         <outlet property="radiusSlider" destination="WcC-z1-QyX" id="WoR-9B-kif"/>
-                        <outlet property="startDate" destination="Vt3-51-pwV" id="aOg-X9-120"/>
+                        <outlet property="startDatePicker" destination="6Oj-Lg-D3t" id="6zK-k8-V6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVK-dS-2vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Isu-wR-iiS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="749" y="-910"/>
+            <point key="canvasLocation" x="748" y="-832"/>
         </scene>
     </scenes>
     <resources>

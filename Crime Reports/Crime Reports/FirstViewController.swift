@@ -30,7 +30,11 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var viewButton: UIBarButtonItem!
     //Refresh Button Outlet
     @IBOutlet weak var refreshButton: UIButton!
-
+    //Ranges
+    @IBOutlet weak var range1: UILabel!
+    @IBOutlet weak var range2: UILabel!
+    @IBOutlet weak var range3: UILabel!
+    @IBOutlet weak var range4: UILabel!
     
     //SODA Client 3CYKTT42HJUDGalN2tURvsYoi
     let client = SODAClient(domain: "data.buffalony.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")
@@ -141,10 +145,15 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
         }
         
-        var colorRanges: [Int] = [0,0,0,0]
+        var colorRanges = [Int]()
+        colorRanges = [0,0,0,0]
         for index in 0...3 {
             colorRanges[index] = minPoints + ((maxPoints - minPoints)/5) * (index + 1)
         }
+        range1.text = colorRanges[0].description
+        range2.text = colorRanges[1].description
+        range3.text = colorRanges[2].description
+        range4.text = colorRanges[3].description
         print(minPoints, maxPoints, colorRanges)
         
         while (tempData.count > 1){

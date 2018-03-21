@@ -60,7 +60,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     // Performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
         data.removeAll()
-        // Warn about setting limit too high
         let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         cngQuery.orderDescending("incident_datetime").get { res in
@@ -81,7 +80,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     }
     
     //Annotates Map With Blocks of Color Determined by ammount of reports
-    func drawBlocks(withData adata: [[String: Any]]!) {
+    func drawBlocks(withData data: [[String: Any]]!) {
         // Clear Old Annotations
         if mapView.overlays.count > 0 {
             self.mapView.overlays.forEach {
@@ -91,29 +90,28 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
         }
         
-        data = adata
-        
+        // Array of Coordinates as Doubles
         var tempData: [[Double]] = []
         
-        
-        var anns : [MKAnnotation] = []
+        //Not Used Yet
+        //var anns : [MKAnnotation] = []
         for item in data {
-            
-            // item["incident_location"] != nil
+            // Get lat and long
             guard let lat = (item["latitude"] as? NSString)?.doubleValue,
                 let lon = (item["longitude"] as? NSString)?.doubleValue else { continue }
             
-            // Set coordinates to tempData
+            // Append coordinates to tempData
             tempData.append([lat, lon])
             
             // Not Used Yet
-            let a = MKPointAnnotation()
+            /*let a = MKPointAnnotation()
             a.title = item["incident_type_primary"] as? String ?? ""
             a.coordinate = CLLocationCoordinate2D (latitude: lat, longitude: lon)
             a.subtitle = item["incident_datetime"] as? String ?? item["address_1"] as? String ?? ""
-            anns.append(a)
+            anns.append(a)*/
         }
         
+        // Finds Color Range
         var rangeFinder = tempData
         var minPoints = 100000000
         var maxPoints = 0
@@ -156,6 +154,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         range4.text = colorRanges[3].description
         print(minPoints, maxPoints, colorRanges)
         
+        // Draws each block
         while (tempData.count > 1){
             // Points to be drawn on map
             var sectorPoints: [CLLocationCoordinate2D] = []
@@ -233,6 +232,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
                 }
             }
             
+            // Catches any items with bad coordinates then renders
             if (shapeCoordinates[0].latitude != -180){
                 let polygon = MKPolygon(coordinates: shapeCoordinates, count: shapeCoordinates.count)
                 
@@ -287,7 +287,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     
     // Refresh Button Clicked
     @IBAction func refreshButtonClicked(_ sender: Any) {
-        print("BUTTON PRESSED")
         print(data.count)
         refresh(self)
     }

@@ -251,41 +251,30 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let title = overlay.title as? String
-            if (title == "1"){
-                let renderer1 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-                renderer1.fillColor = #colorLiteral(red: 0.9882352941, green: 0.7254901961, blue: 0.1764705882, alpha: 0.6)
-                renderer1.strokeColor = UIColor.black
-                renderer1.lineWidth = 0.1
-                return renderer1
+            let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
+            renderer.strokeColor = UIColor.black
+            renderer.lineWidth = 0.1
+            
+            switch title ?? ""{
+            case "1":
+                renderer.fillColor = #colorLiteral(red: 0.9882352941, green: 0.7254901961, blue: 0.1764705882, alpha: 0.6)
+                return renderer
+            case "2":
+                renderer.fillColor = #colorLiteral(red: 0.8156862745, green: 0.368627451, blue: 0.1450980392, alpha: 0.6)
+                return renderer
+            case "3":
+                renderer.fillColor = #colorLiteral(red: 0.7019607843, green: 0.1254901961, blue: 0.1215686275, alpha: 0.6)
+                return renderer
+            case "4":
+                renderer.fillColor = #colorLiteral(red: 0.4156862745, green: 0.1411764706, blue: 0.262745098, alpha: 0.6)
+                return renderer
+            case "5":
+                renderer.fillColor = #colorLiteral(red: 0.4156862745, green: 0.1411764706, blue: 0.262745098, alpha: 0.6)
+                return renderer
+            default:
+                print("mapView Renderer Switch Failed")
             }
-            if (title == "2"){
-                let renderer2 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-                renderer2.fillColor = #colorLiteral(red: 0.8156862745, green: 0.368627451, blue: 0.1450980392, alpha: 0.6)
-                renderer2.strokeColor = UIColor.black
-                renderer2.lineWidth = 0.1
-                return renderer2
-            }
-            if (title == "3"){
-                let renderer3 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-                renderer3.fillColor = #colorLiteral(red: 0.7019607843, green: 0.1254901961, blue: 0.1215686275, alpha: 0.6)
-                renderer3.strokeColor = UIColor.black
-                renderer3.lineWidth = 0.1
-                return renderer3
-            }
-            if (title == "4"){
-                let renderer4 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-                renderer4.fillColor = #colorLiteral(red: 0.4156862745, green: 0.1411764706, blue: 0.262745098, alpha: 0.6)
-                renderer4.strokeColor = UIColor.black
-                renderer4.lineWidth = 0.1
-                return renderer4
-            }
-            if (title == "5"){
-                let renderer5 = MKPolygonRenderer(polygon: overlay as! MKPolygon)
-                renderer5.fillColor = #colorLiteral(red: 0.1098039216, green: 0.1647058824, blue: 0.4196078431, alpha: 0.6)
-                renderer5.strokeColor = UIColor.black
-                renderer5.lineWidth = 0.1
-                return renderer5
-            }
+
         }
         return MKOverlayRenderer()
     }

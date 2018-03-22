@@ -271,7 +271,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
                 renderer.fillColor = #colorLiteral(red: 0.4156862745, green: 0.1411764706, blue: 0.262745098, alpha: 0.6)
                 return renderer
             case "5":
-                renderer.fillColor = #colorLiteral(red: 0.4156862745, green: 0.1411764706, blue: 0.262745098, alpha: 0.6)
+                renderer.fillColor = #colorLiteral(red: 0.1098039216, green: 0.1647058824, blue: 0.4196078431, alpha: 0.6)
                 return renderer
             default:
                 print("mapView Renderer Switch Failed")

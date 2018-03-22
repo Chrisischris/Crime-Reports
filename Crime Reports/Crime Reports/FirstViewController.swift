@@ -14,6 +14,7 @@ import CoreLocation
 var startDateValue = "2018-01-01"
 var endDateValue = "2099-01-01"
 var maxDistance = 1659.345
+var mapTypeVar = MKMapType.hybrid
 //Crime Reports Data
 var data: [[String: Any]] = []
 
@@ -249,6 +250,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     
     // mapView Renderer
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
         if overlay is MKPolygon {
             let title = overlay.title as? String
             let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
@@ -287,6 +289,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     
     // Refresh Button Clicked
     @IBAction func refreshButtonClicked(_ sender: Any) {
+        mapView.mapType = mapTypeVar
         print(data.count)
         refresh(self)
     }
@@ -317,6 +320,8 @@ class dropDownController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     
+    @IBOutlet weak var mapType: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -337,6 +342,17 @@ class dropDownController: UIViewController, UITextFieldDelegate{
         maxDistance = Double(sender.value)
         let maxDistanceFeet = Int(maxDistance * 3.2808)
         radiusInMiles.text = "Radius: " + String(maxDistanceFeet) + " ft"
+    }
+    
+    @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            mapTypeVar = MKMapType.hybrid
+        case 1:
+            mapTypeVar = MKMapType.standard
+        default:
+            mapTypeVar = MKMapType.hybrid
+        }
     }
     
 }

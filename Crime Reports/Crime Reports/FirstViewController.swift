@@ -53,7 +53,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         refresh(self)
         
         // Sets default view
-        let span = MKCoordinateSpanMake(0.25, 0.25)
+        let span = MKCoordinateSpanMake(0.2, 0.2)
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 42.89, longitude: -78.88), span: span)
         mapView.setRegion(region, animated: true)
         
@@ -276,7 +276,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             let renderer = MKPolygonRenderer(polygon: overlay as! MKPolygon)
             renderer.strokeColor = UIColor.black
             renderer.lineWidth = 0.1
-            
             switch title ?? ""{
             case "1":
                 renderer.fillColor = #colorLiteral(red: 0.9882352941, green: 0.7254901961, blue: 0.1764705882, alpha: 0.6)

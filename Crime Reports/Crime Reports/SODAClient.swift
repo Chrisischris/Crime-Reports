@@ -80,7 +80,6 @@ public class SODAClient {
         // Send it
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, reqError in
-        
             // We sync the callback with the main thread to make UI programming easier
             let syncCompletion = { res in OperationQueue.main.addOperation { completionHandler (res) } }
             

@@ -15,6 +15,7 @@ var startDateValue = "2018-01-01"
 var endDateValue = "2099-01-01"
 var maxDistance = 1659.345
 var mapTypeVar = MKMapType.hybrid
+var crimeType = "All"
 //Crime Reports Data
 var data: [[String: Any]] = []
 
@@ -61,7 +62,25 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     // Performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
         data.removeAll()
-        let cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
+        var cngQuery = client.query(dataset: "d6g9-xbgu").limit(1)
+        switch crimeType {
+        case "All":
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
+        case "Theft":
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft of Vehicle'").limit(10000000000000)
+        case "Breaking & Entering":
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Breaking %26 Entering'").limit(10000000000000)
+        case "Assault":
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Assault'").limit(10000000000000)
+        case "Robbery":
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Robbery'").limit(10000000000000)
+        case "Sexual Offense/Assault":
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Sexual Offense' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Sexual Assault' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Other Sexual Offense'").limit(10000000000000)
+        case "Homicide":
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Homicide'").limit(10000000000000)
+        default:
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
+        }
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         cngQuery.orderDescending("incident_datetime").get { res in
             switch res {
@@ -75,6 +94,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
             
             // Update the UI
+            print("Length of Data: ");print(data.count)
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.drawBlocks(withData: data)
         }
@@ -111,6 +131,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             a.subtitle = item["incident_datetime"] as? String ?? item["address_1"] as? String ?? ""
             anns.append(a)*/
         }
+
         
         // Finds Color Range
         var rangeFinder = tempData
@@ -153,7 +174,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         range2.text = colorRanges[1].description
         range3.text = colorRanges[2].description
         range4.text = colorRanges[3].description
-        print(minPoints, maxPoints, colorRanges)
         
         // Draws each block
         while (tempData.count > 1){
@@ -290,7 +310,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     // Refresh Button Clicked
     @IBAction func refreshButtonClicked(_ sender: Any) {
         mapView.mapType = mapTypeVar
-        print(data.count)
         refresh(self)
     }
     
@@ -313,7 +332,8 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
 }
 
 // Drop Down Class
-class dropDownController: UIViewController, UITextFieldDelegate{
+class dropDownController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
+
     @IBOutlet weak var radiusSlider: UISlider!
     @IBOutlet weak var radiusInMiles: UILabel!
     
@@ -322,8 +342,16 @@ class dropDownController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var mapType: UISegmentedControl!
     
+    @IBOutlet weak var crimeTypePicker: UIPickerView!
+    
+    var arrayTypes = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        arrayTypes = ["All", "Theft", "Breaking & Entering", "Assault", "Robbery", "Sexual Offense/Assault", "Homicide"]
+        self.crimeTypePicker.dataSource = self
+        self.crimeTypePicker.delegate = self
     }
     
     @IBAction func dateChanged(_ sender: UIDatePicker) {
@@ -355,6 +383,21 @@ class dropDownController: UIViewController, UITextFieldDelegate{
         }
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrayTypes.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return arrayTypes[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        crimeType = arrayTypes[row]
+    }
 }
 
 

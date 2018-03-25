@@ -69,7 +69,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         case "Theft":
             cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft of Vehicle'").limit(10000000000000)
         case "Breaking & Entering":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Breaking %26 Entering'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type != 'Theft' AND parent_incident_type != 'Theft of Vehicle' AND parent_incident_type != 'Assault' AND parent_incident_type != 'Robbery' AND parent_incident_type != 'Sexual Offense' AND parent_incident_type != 'Sexual Assault' AND parent_incident_type != 'Other Sexual Offense' AND parent_incident_type != 'Homicide'").limit(10000000000000)
         case "Assault":
             cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Assault'").limit(10000000000000)
         case "Robbery":

@@ -76,6 +76,16 @@ class SecondViewController: UITableViewController {
         return c!
     }
     
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetails" {
+            let detailsVC = segue.destination as! EventDetailsViewController
+            detailsVC.eventDictionary = data[self.tableView.indexPathForSelectedRow!.row]
+        }
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    
 }
 
 class EventDetailsViewController: UITableViewController {

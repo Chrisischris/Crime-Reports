@@ -450,7 +450,7 @@
 		A0E7AC662050692E00E3410D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XS4WD246Q6;
 				INFOPLIST_FILE = "Crime Reports/Info.plist";
@@ -466,7 +466,7 @@
 		A0E7AC672050692E00E3410D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XS4WD246Q6;
 				INFOPLIST_FILE = "Crime Reports/Info.plist";

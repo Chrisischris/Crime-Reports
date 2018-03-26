@@ -13,7 +13,7 @@ import CoreLocation
 // Variables
 var startDateValue = "2018-01-01"
 var endDateValue = "2099-01-01"
-var maxDistance = 1659.345
+var maxDistance = 1760.74
 var mapTypeVar = MKMapType.hybrid
 var crimeType = "All"
 //Crime Reports Data
@@ -65,21 +65,21 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         var cngQuery = client.query(dataset: "d6g9-xbgu").limit(1)
         switch crimeType {
         case "All":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(1000000000)
         case "Theft":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft of Vehicle'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Theft of Vehicle'").limit(1000000000)
         case "Breaking & Entering":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type != 'Theft' AND parent_incident_type != 'Theft of Vehicle' AND parent_incident_type != 'Assault' AND parent_incident_type != 'Robbery' AND parent_incident_type != 'Sexual Offense' AND parent_incident_type != 'Sexual Assault' AND parent_incident_type != 'Other Sexual Offense' AND parent_incident_type != 'Homicide'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type != 'Theft' AND parent_incident_type != 'Theft of Vehicle' AND parent_incident_type != 'Assault' AND parent_incident_type != 'Robbery' AND parent_incident_type != 'Sexual Offense' AND parent_incident_type != 'Sexual Assault' AND parent_incident_type != 'Other Sexual Offense' AND parent_incident_type != 'Homicide'").limit(1000000000)
         case "Assault":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Assault'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Assault'").limit(1000000000)
         case "Robbery":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Robbery'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Robbery'").limit(1000000000)
         case "Sexual Offense/Assault":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Sexual Offense' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Sexual Assault' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Other Sexual Offense'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Sexual Offense' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Sexual Assault' OR incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Other Sexual Offense'").limit(1000000000)
         case "Homicide":
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Homicide'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000' AND parent_incident_type = 'Homicide'").limit(1000000000)
         default:
-            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(10000000000000)
+            cngQuery = client.query(dataset: "d6g9-xbgu").filter("incident_datetime >= '" + startDateValue + "T01:00:00.000' AND incident_datetime < '" + endDateValue + "T01:00:00.000'").limit(1000000000)
         }
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         cngQuery.orderDescending("incident_datetime").get { res in

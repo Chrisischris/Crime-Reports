@@ -399,10 +399,10 @@
             </objects>
             <point key="canvasLocation" x="1515.9420289855075" y="-540.48913043478262"/>
         </scene>
-        <!--Event Details View Controller-->
+        <!--Details-->
         <scene sceneID="0Aw-lU-jIS">
             <objects>
-                <tableViewController id="6uf-aX-MRd" customClass="EventDetailsViewController" customModule="Crime_Reports" sceneMemberID="viewController">
+                <tableViewController title="Details" id="6uf-aX-MRd" customClass="EventDetailsViewController" customModule="Crime_Reports" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zjo-Mm-zla">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

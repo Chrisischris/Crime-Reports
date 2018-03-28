@@ -59,12 +59,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
         
     }
     
-    override func didReceiveMemoryWarning() {
-        print("Memory Warning!!!")
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // Performs the data query then updates the UI
     @objc func refresh (_ sender: Any) {
         data.removeAll()

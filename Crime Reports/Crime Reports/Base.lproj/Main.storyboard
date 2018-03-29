@@ -50,7 +50,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2CV-dM-Z5X">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2CV-dM-Z5X">
                                 <rect key="frame" x="0.0" y="64" width="414" height="554"/>
                                 <connections>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="TpC-Ec-mt0"/>
@@ -250,7 +250,15 @@
                             <outlet property="delegate" destination="0iL-Td-sVg" id="Sqa-a2-caO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recent Reports" id="4BC-Zc-FNg"/>
+                    <navigationItem key="navigationItem" title="Recent Reports" id="4BC-Zc-FNg">
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="rMl-ga-ay9">
+                            <connections>
+                                <segue destination="6l0-hF-myv" kind="popoverPresentation" popoverAnchorBarButtonItem="rMl-ga-ay9" id="kbe-kp-6Ap">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Dv-Um-2VW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,8 +336,8 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CRx-th-grf">
                                 <rect key="frame" x="20" y="6" width="374" height="29"/>
                                 <segments>
-                                    <segment title="Hybrid"/>
                                     <segment title="Standard"/>
+                                    <segment title="Hybrid"/>
                                 </segments>
                                 <connections>
                                     <action selector="mapTypeChanged:" destination="emh-oC-V25" eventType="valueChanged" id="8Sn-Bs-Era"/>
@@ -380,6 +388,78 @@
                 <exit id="e1F-jx-rGJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1569.5999999999999" y="-509.14542728635683"/>
+        </scene>
+        <!--Help-->
+        <scene sceneID="s20-n7-SMR">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Help" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="6l0-hF-myv" customClass="PageViewController" customModule="Crime_Reports" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b0j-nL-Zjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="1265"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zs1-l8-B4R">
+            <objects>
+                <viewController storyboardIdentifier="Page1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fa6-kp-wwg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SSM-FE-ptk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="database" translatesAutoresizingMaskIntoConstraints="NO" id="kT7-iM-HIn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iYV-rQ-CS0">
+                                <rect key="frame" x="168" y="630" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iYV-rQ-CS0" firstAttribute="centerX" secondItem="kT7-iM-HIn" secondAttribute="centerX" id="0Ug-JK-ri9"/>
+                            <constraint firstAttribute="trailing" secondItem="kT7-iM-HIn" secondAttribute="trailing" id="2Z1-JG-hus"/>
+                            <constraint firstItem="kT7-iM-HIn" firstAttribute="bottom" secondItem="HUT-5z-XBX" secondAttribute="bottom" id="4lP-jt-TYb"/>
+                            <constraint firstItem="kT7-iM-HIn" firstAttribute="top" secondItem="SSM-FE-ptk" secondAttribute="top" id="Fnd-TM-tWy"/>
+                            <constraint firstItem="iYV-rQ-CS0" firstAttribute="bottom" secondItem="kT7-iM-HIn" secondAttribute="bottom" id="LHF-5O-XDc"/>
+                            <constraint firstItem="kT7-iM-HIn" firstAttribute="leading" secondItem="SSM-FE-ptk" secondAttribute="leading" id="zBX-YJ-bER"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HUT-5z-XBX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T30-aK-R3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="1263.4182908545729"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="v1D-cm-vf9">
+            <objects>
+                <viewController storyboardIdentifier="Page2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zDz-nK-N6I" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="Page2" id="fUc-eh-L0j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="gYc-dj-bke">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="prD-Rb-9hV">
+                                <rect key="frame" x="168" y="630" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gYc-dj-bke" firstAttribute="bottom" secondItem="nPV-N8-TzP" secondAttribute="bottom" id="DMN-dP-c3Y"/>
+                            <constraint firstItem="prD-Rb-9hV" firstAttribute="centerX" secondItem="gYc-dj-bke" secondAttribute="centerX" id="PVK-vb-JdM"/>
+                            <constraint firstItem="prD-Rb-9hV" firstAttribute="bottom" secondItem="nPV-N8-TzP" secondAttribute="bottom" id="Yln-7A-reE"/>
+                            <constraint firstAttribute="trailing" secondItem="gYc-dj-bke" secondAttribute="trailing" id="gcN-vb-pgI"/>
+                            <constraint firstItem="gYc-dj-bke" firstAttribute="top" secondItem="fUc-eh-L0j" secondAttribute="top" id="kvm-EN-nrW"/>
+                            <constraint firstItem="gYc-dj-bke" firstAttribute="leading" secondItem="fUc-eh-L0j" secondAttribute="leading" id="rON-vC-XPh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nPV-N8-TzP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNf-UF-zlj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2296.8000000000002" y="1264.3178410794603"/>
         </scene>
         <!--Details-->
         <scene sceneID="0Aw-lU-jIS">
@@ -444,6 +524,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOa-MM-48k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749" y="500"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6pl-Ef-OHp">
+            <objects>
+                <viewController storyboardIdentifier="Page3" useStoryboardIdentifierAsRestorationIdentifier="YES" id="beG-gq-0ty" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="Page2" id="AR7-tR-4Hv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="database" translatesAutoresizingMaskIntoConstraints="NO" id="cHW-fd-Bmq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="YgT-ex-AUA">
+                                <rect key="frame" x="168" y="630" width="39" height="37"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkk-ur-kWf">
+                                <rect key="frame" x="296" y="611" width="63" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <segue destination="49e-Tb-3d3" kind="show" id="xqv-zE-cDi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cHW-fd-Bmq" firstAttribute="top" secondItem="AR7-tR-4Hv" secondAttribute="top" id="210-ln-1fu"/>
+                            <constraint firstAttribute="bottom" secondItem="fkk-ur-kWf" secondAttribute="bottom" constant="20" symbolic="YES" id="8hE-EZ-fkk"/>
+                            <constraint firstAttribute="trailing" secondItem="cHW-fd-Bmq" secondAttribute="trailing" id="8vH-bL-thp"/>
+                            <constraint firstItem="fkk-ur-kWf" firstAttribute="leading" secondItem="YgT-ex-AUA" secondAttribute="trailing" constant="89" id="Fx2-Aq-DUO"/>
+                            <constraint firstItem="YgT-ex-AUA" firstAttribute="centerX" secondItem="cHW-fd-Bmq" secondAttribute="centerX" id="S96-PX-8Zs"/>
+                            <constraint firstItem="fkk-ur-kWf" firstAttribute="trailing" secondItem="AR7-tR-4Hv" secondAttribute="trailingMargin" id="bxV-dj-lek"/>
+                            <constraint firstItem="cHW-fd-Bmq" firstAttribute="bottom" secondItem="PH0-LS-gl6" secondAttribute="bottom" id="cVE-wN-zek"/>
+                            <constraint firstItem="YgT-ex-AUA" firstAttribute="bottom" secondItem="cHW-fd-Bmq" secondAttribute="bottom" id="eAm-ck-9EX"/>
+                            <constraint firstItem="cHW-fd-Bmq" firstAttribute="leading" secondItem="AR7-tR-4Hv" secondAttribute="leading" id="gKI-tE-eVY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PH0-LS-gl6"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TKv-Gx-V9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3048.8000000000002" y="1263.4182908545729"/>
         </scene>
     </scenes>
     <resources>

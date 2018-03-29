@@ -14,7 +14,7 @@ import CoreLocation
 var startDateValue = "2018-01-01"
 var endDateValue = "2099-01-01"
 var maxDistance = 1760.74
-var mapTypeVar = MKMapType.hybrid
+var mapTypeVar = MKMapType.standard
 var crimeType = "All"
 //Crime Reports Data
 var data: [[String: Any]] = []
@@ -380,11 +380,11 @@ class dropDownController: UIViewController, UITextFieldDelegate, UIPickerViewDat
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
         switch (sender.selectedSegmentIndex) {
         case 0:
-            mapTypeVar = MKMapType.hybrid
-        case 1:
             mapTypeVar = MKMapType.standard
-        default:
+        case 1:
             mapTypeVar = MKMapType.hybrid
+        default:
+            mapTypeVar = MKMapType.standard
         }
     }
     

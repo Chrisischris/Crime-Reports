@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class SecondViewController: UITableViewController {
     
@@ -143,10 +144,10 @@ class EventDetailsViewController: UITableViewController {
 
 // Help Screen
 class PageViewController: UIPageViewController {
+    @IBOutlet weak var skipButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         dataSource = self
         
         if let firstViewController = orderedViewControllers.first {
@@ -166,6 +167,21 @@ class PageViewController: UIPageViewController {
     private func newColoredViewController(color: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
             instantiateViewController(withIdentifier: "\(color)")
+    }
+    
+    @IBAction func skipButtonTapped(_ sender: UIBarButtonItem) {
+        // Reset All Setting When Skipped
+        startDateValue = "2018-01-01"
+        endDateValue = "2099-01-01"
+        maxDistance = 1760.74
+        mapTypeVar = MKMapType.standard
+        crimeType = "All"
+        
+        let nextView = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC")
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.window!.rootViewController = nextView
     }
 }
 

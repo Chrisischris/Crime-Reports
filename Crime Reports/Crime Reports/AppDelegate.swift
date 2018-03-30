@@ -16,6 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UserDefaults.standard.register(defaults: ["showTutorialPages" : true])
+        let defaults = UserDefaults.standard
+        let showTutorialPages = defaults.bool(forKey:"showTutorialPages")
+        
+        if showTutorialPages == true{
+            let mainStoryBoard: UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+        
+            let nextView = mainStoryBoard.instantiateViewController(withIdentifier: "tutorialVC")
+        
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+            appDelegate.window!.rootViewController = nextView
+            
+            
+            let defaults = UserDefaults.standard
+            defaults.setValue(false, forKey:"showTutorialPages")
+            defaults.synchronize()
+        }
         return true
     }
 

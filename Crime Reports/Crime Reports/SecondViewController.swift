@@ -66,7 +66,12 @@ class SecondViewController: UITableViewController {
         
         let name = item["parent_incident_type"]! as! String
         let date = item["incident_datetime"]! as! String
-        let formatedDate = date[date.index(date.startIndex, offsetBy: 5)...date.index(date.startIndex, offsetBy: 6)] + "/" + date[date.index(date.startIndex, offsetBy: 8)...date.index(date.startIndex, offsetBy: 9)] + "/" + date[...date.index(date.startIndex, offsetBy: 3)]
+        
+        let month = date[date.index(date.startIndex, offsetBy: 5)...date.index(date.startIndex, offsetBy: 6)]
+        let day = date[date.index(date.startIndex, offsetBy: 8)...date.index(date.startIndex, offsetBy: 9)]
+        let year = date[...date.index(date.startIndex, offsetBy: 3)]
+        let formatedDate = month + "/" + day + "/" + year
+        
         c?.textLabel?.text = name + " - " + formatedDate
         
         let street = item["address_1"]! as! String

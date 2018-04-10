@@ -25,7 +25,7 @@
                                 <items>
                                     <navigationItem title="Crime Reports" id="7xf-ct-4wc">
                                         <barButtonItem key="rightBarButtonItem" title="View Button" style="plain" id="WdO-cN-5Sx">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jnd-Ix-a7n">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jnd-Ix-a7n">
                                                 <rect key="frame" x="311" y="5.6666666666666679" width="83" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -106,6 +106,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Reports" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDc-8e-uc2">
+                                <rect key="frame" x="0.0" y="646" width="64.666666666666671" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y77-6h-cTE">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <connections>
@@ -138,12 +144,14 @@
                             <constraint firstItem="f8Q-VV-EyP" firstAttribute="bottom" secondItem="2CV-dM-Z5X" secondAttribute="bottom" id="QcY-GJ-5lV"/>
                             <constraint firstItem="Z9b-s4-m9e" firstAttribute="leading" secondItem="803-s0-P8q" secondAttribute="trailing" id="Rl9-ZM-IZ0"/>
                             <constraint firstItem="d05-Sb-Xjf" firstAttribute="bottom" secondItem="Ecf-Do-Ihq" secondAttribute="bottom" id="Rvb-wU-3w5"/>
+                            <constraint firstItem="mDc-8e-uc2" firstAttribute="leading" secondItem="f8Q-VV-EyP" secondAttribute="leading" id="UZz-Pu-2Ae"/>
                             <constraint firstItem="uP8-FL-eLh" firstAttribute="bottom" secondItem="Ecf-Do-Ihq" secondAttribute="bottom" id="V2c-4E-fob"/>
                             <constraint firstItem="f8Q-VV-EyP" firstAttribute="baseline" secondItem="Z9b-s4-m9e" secondAttribute="firstBaseline" id="VWt-ag-Nbu"/>
                             <constraint firstItem="f8Q-VV-EyP" firstAttribute="baseline" secondItem="uP8-FL-eLh" secondAttribute="firstBaseline" id="VzR-9W-Mfl"/>
                             <constraint firstItem="Z9b-s4-m9e" firstAttribute="bottom" secondItem="Ecf-Do-Ihq" secondAttribute="bottom" id="WXQ-dH-dx9"/>
                             <constraint firstItem="f8Q-VV-EyP" firstAttribute="baseline" secondItem="803-s0-P8q" secondAttribute="baseline" id="Xd6-zc-5vR"/>
                             <constraint firstItem="Y77-6h-cTE" firstAttribute="top" secondItem="2CV-dM-Z5X" secondAttribute="top" id="aso-Jf-pAQ"/>
+                            <constraint firstItem="Ecf-Do-Ihq" firstAttribute="bottom" secondItem="mDc-8e-uc2" secondAttribute="bottom" constant="20" id="auC-lH-D50"/>
                             <constraint firstItem="Y77-6h-cTE" firstAttribute="leading" secondItem="JrB-ce-QA2" secondAttribute="leading" id="bG3-0V-tAd"/>
                             <constraint firstItem="S6U-4L-rzL" firstAttribute="trailing" secondItem="803-s0-P8q" secondAttribute="trailing" id="c8n-rb-ZUy"/>
                             <constraint firstItem="uP8-FL-eLh" firstAttribute="width" secondItem="Z9b-s4-m9e" secondAttribute="width" id="fNj-7h-m3i"/>
@@ -168,6 +176,7 @@
                         <outlet property="containerView" destination="Y77-6h-cTE" id="5Lm-ZR-PTH"/>
                         <outlet property="crimeReports" destination="7xf-ct-4wc" id="MVH-3v-PDo"/>
                         <outlet property="mapView" destination="2CV-dM-Z5X" id="kv6-9e-9mT"/>
+                        <outlet property="numberOfReports" destination="mDc-8e-uc2" id="NWA-SB-gPj"/>
                         <outlet property="range1" destination="fqX-8H-Y8V" id="MZw-3Y-Dcp"/>
                         <outlet property="range2" destination="S6U-4L-rzL" id="PPV-B8-xeG"/>
                         <outlet property="range3" destination="CoK-1A-2wc" id="yFP-Ti-MtY"/>

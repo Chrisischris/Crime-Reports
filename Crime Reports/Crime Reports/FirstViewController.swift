@@ -36,6 +36,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var range2: UILabel!
     @IBOutlet weak var range3: UILabel!
     @IBOutlet weak var range4: UILabel!
+    @IBOutlet weak var numberOfReports: UILabel!
     
     //SODA Client 3CYKTT42HJUDGalN2tURvsYoi
     let client = SODAClient(domain: "data.buffalony.gov", token: "3CYKTT42HJUDGalN2tURvsYoi")
@@ -99,6 +100,7 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
             }
             
             // Update the UI
+            self.numberOfReports.text = String(data.count) + " Reports"
             print("Length of Data: ");print(data.count)
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.drawBlocks(withData: data)

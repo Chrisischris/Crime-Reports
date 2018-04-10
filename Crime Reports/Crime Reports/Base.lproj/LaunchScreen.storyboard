@@ -23,7 +23,7 @@
                                 <items>
                                     <navigationItem title="Crime Reports" id="1Z3-DO-mfW">
                                         <barButtonItem key="rightBarButtonItem" title="View Button" id="5Ya-An-wuv">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GLT-Du-o1p">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GLT-Du-o1p">
                                                 <rect key="frame" x="311" y="5.6666666666666679" width="83" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -44,12 +44,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="rWA-qU-cTU" firstAttribute="trailing" secondItem="T4F-kw-l9u" secondAttribute="trailing" id="1fu-cw-uKo"/>
-                            <constraint firstItem="T4F-kw-l9u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8Lo-qG-j5U"/>
-                            <constraint firstAttribute="trailing" secondItem="T4F-kw-l9u" secondAttribute="trailing" id="Aae-Kh-LaF"/>
-                            <constraint firstItem="T4F-kw-l9u" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Wfl-f3-lSY"/>
-                            <constraint firstItem="rWA-qU-cTU" firstAttribute="leading" secondItem="T4F-kw-l9u" secondAttribute="leading" id="YUU-PU-mEv"/>
-                            <constraint firstAttribute="bottom" secondItem="rWA-qU-cTU" secondAttribute="bottom" id="i45-mZ-WBV"/>
+                            <constraint firstItem="rWA-qU-cTU" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9fy-YO-0Vs"/>
+                            <constraint firstItem="T4F-kw-l9u" firstAttribute="leading" secondItem="rWA-qU-cTU" secondAttribute="leading" id="ETc-7R-vZE"/>
+                            <constraint firstAttribute="trailing" secondItem="T4F-kw-l9u" secondAttribute="trailing" id="Hh8-AB-7JQ"/>
+                            <constraint firstItem="T4F-kw-l9u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KMM-YS-ShW"/>
+                            <constraint firstItem="T4F-kw-l9u" firstAttribute="trailing" secondItem="rWA-qU-cTU" secondAttribute="trailing" id="cxB-01-diM"/>
+                            <constraint firstItem="T4F-kw-l9u" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="oiB-1e-ln2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

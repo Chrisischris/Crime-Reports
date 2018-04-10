@@ -16,6 +16,7 @@ var endDateValue = "2099-01-01"
 var maxDistance = 1760.74
 var mapTypeVar = MKMapType.standard
 var crimeType = "All"
+var viewButtonState = 0
 //Crime Reports Data
 var data: [[String: Any]] = []
 
@@ -30,8 +31,6 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var mapView: MKMapView!
     //View Button Outlet
     @IBOutlet weak var viewButton: UIBarButtonItem!
-    //Refresh Button Outlet
-    @IBOutlet weak var refreshButton: UIButton!
     //Ranges
     @IBOutlet weak var range1: UILabel!
     @IBOutlet weak var range2: UILabel!
@@ -307,15 +306,21 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
     }
     
     // View Button Clicked
+    @IBOutlet weak var crimeReports: UINavigationItem!
     @IBAction func viewButtonClicked(_ sender: UIButton) {
+        if (viewButtonState == 0){
+            let aboutButton = UIBarButtonItem(title: "Apply", style: .plain, target: self, action: #selector(viewButtonClicked(_:)))
+            crimeReports.rightBarButtonItem = aboutButton
+            viewButtonState = 1
+        }else if (viewButtonState == 1){
+            let aboutButton1 = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(viewButtonClicked(_:)))
+            crimeReports.rightBarButtonItem = aboutButton1
+            mapView.mapType = mapTypeVar
+            refresh(self)
+            viewButtonState = 0
+        }
         // Set Container View Visibilty
         containerView.isHidden = !containerView.isHidden
-    }
-    
-    // Refresh Button Clicked
-    @IBAction func refreshButtonClicked(_ sender: Any) {
-        mapView.mapType = mapTypeVar
-        refresh(self)
     }
     
     //Request Location Access

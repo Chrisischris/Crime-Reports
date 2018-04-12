@@ -1,8 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "Help3.png"
+      "idiom" : "iphone",
+      "filename" : "iphoneHelp3.png"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "ipadHelp.png"
     }
   ],
   "info" : {

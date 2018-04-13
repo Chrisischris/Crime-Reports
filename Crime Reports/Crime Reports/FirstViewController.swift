@@ -94,8 +94,14 @@ class FirstViewController: UIViewController, MKMapViewDelegate{
                 // Update our data
                 data = adata
             case .error (let err):
-                let errorMessage = (err as NSError).userInfo.debugDescription
-                let alertController = UIAlertController(title: "Error Refreshing", message: errorMessage, preferredStyle:.alert)
+                //let errorMessage = (err as NSError).userInfo.debugDescription
+                //let alertController = UIAlertController(title: "Error Refreshing", message: errorMessage, preferredStyle:.alert)
+                let alertController = UIAlertController(title: "Error Refreshing", message: "No Internet Connection", preferredStyle:.alert)
+                
+                // OK Button
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(defaultAction)
+                
                 self.present(alertController, animated: true, completion: nil)
             }
             

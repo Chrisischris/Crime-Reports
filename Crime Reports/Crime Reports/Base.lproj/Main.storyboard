@@ -631,8 +631,8 @@
     </scenes>
     <resources>
         <image name="Help1" width="1080" height="1770"/>
-        <image name="Help2" width="1957" height="3639"/>
-        <image name="Help3" width="1957" height="3639"/>
+        <image name="Help2" width="1080" height="1770"/>
+        <image name="Help3" width="1080" height="1770"/>
         <image name="database" width="30" height="30"/>
         <image name="map" width="30" height="30"/>
     </resources>
